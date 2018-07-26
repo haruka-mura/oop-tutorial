@@ -1,0 +1,2 @@
+class UpdateArticleAndSendMail < ApplicationRecord
+end

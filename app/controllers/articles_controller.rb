@@ -41,8 +41,9 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    update_article_and_send_mail = UpdateArticleAndSendMail.new(@article)
     respond_to do |format|
-      if @article.update(article_params)
+      if update_article_and_send_mail.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
         format.json { render :show, status: :ok, location: @article }
       else
