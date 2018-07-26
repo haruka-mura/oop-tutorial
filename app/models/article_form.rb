@@ -1,0 +1,2 @@
+class ArticleForm < ApplicationRecord
+end

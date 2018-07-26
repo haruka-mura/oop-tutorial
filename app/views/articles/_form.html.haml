@@ -12,5 +12,11 @@
   .field
     = f.label :body
     = f.text_area :body
+  .field
+    = f.label :category1
+    = f.select :category1, Category.all.map { |t| [t.name, t.id]  }
+  .field
+    = f.label :category2
+    = f.select :category2, Category.all.map { |t| [t.name, t.id]  }
   .actions
     = f.submit 'Save'
