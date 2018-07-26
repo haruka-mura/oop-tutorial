@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article_form = ArticleForm.new()
   end
 
   # GET /articles/1/edit
@@ -24,17 +24,16 @@ class ArticlesController < ApplicationController
   # POST /articles
   # POST /articles.json
   def create
-    @article = Article.new(article_params)
-    create_article_and_send_mail = CreateArticleAndSendMail.new(@article)
+    # binding.pry
 
-    respond_to do |format|
-      if create_article_and_send_mail.save
-        format.html { redirect_to @article, notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    @article_form = ArticleForm.new(article_form_params)
+
+    # create_article_and_send_mail = CreateArticleAndSendMail.new(@article)
+
+    if @article_form.save
+      redirect_to @article_form.article, notice: 'Article was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -70,7 +69,7 @@ class ArticlesController < ApplicationController
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:title, :body)
+    def article_form_params
+      params.require(:article_form).permit(:title, :body, :category1, :category2)
     end
 end

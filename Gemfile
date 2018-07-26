@@ -19,6 +19,7 @@ gem 'haml-rails'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry-rails'
   gem 'capybara', '~> 2.13'
   gem 'letter_opener_web'
   gem 'selenium-webdriver'
