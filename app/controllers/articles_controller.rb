@@ -25,9 +25,10 @@ class ArticlesController < ApplicationController
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    create_article_and_send_mail = CreateArticleAndSendMail.new(@article)
 
     respond_to do |format|
-      if @article.save
+      if create_article_and_send_mail.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
