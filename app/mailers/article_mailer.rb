@@ -4,6 +4,8 @@ class ArticleMailer < ApplicationMailer
     mail to: "test@example.com"
   end
 
-  def update_article()
+  def update_article(article)
+    @article = article
+    mail to: "test@example.com"
   end
 end
