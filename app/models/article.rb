@@ -1,4 +1,4 @@
 class Article < ApplicationRecord
-  has_many :article_categories, through: :categories
-  has_many :categories
+  has_many :articles_categories
+  has_many :categories, through: :articles_categories
 end

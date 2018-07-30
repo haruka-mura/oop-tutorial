@@ -19,13 +19,12 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+    
   end
 
   # POST /articles
   # POST /articles.json
   def create
-    # binding.pry
-
     @article_form = ArticleForm.new(article_form_params)
 
     # create_article_and_send_mail = CreateArticleAndSendMail.new(@article)
