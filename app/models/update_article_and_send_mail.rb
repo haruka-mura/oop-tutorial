@@ -8,9 +8,9 @@ class UpdateArticleAndSendMail
     @article = article
   end
 
-  def update(article_params)
+  def update(params)
     run_callbacks :update do
-      @article.update(article_params)
+      @article.update(params)
     end
   end
 

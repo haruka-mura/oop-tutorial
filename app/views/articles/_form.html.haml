@@ -1,4 +1,4 @@
-= form_with(model: @article_form, url: articles_path) do |f|
+= form_with(model: @article_form, url: polymorphic_path(@article_form.article)) do |f|
   - if @article_form.errors.any?
     #error_explanation
       %h2= "#{pluralize(@article_form.errors.count, "error")} prohibited this article from being saved:"
