@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
-    
+    @article_form = ArticleForm.new(article_params(@article))
   end
 
   # POST /articles
@@ -62,6 +62,16 @@ class ArticlesController < ApplicationController
   end
 
   private
+    def article_params(article)
+      {
+        title: article.title,
+        body: article.body,
+        category1: article.categories[0],
+        category2: article.categories[1],
+        article: article
+      }
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
