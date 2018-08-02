@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'article_search/search'
+  get 'search', to: 'article_search#search'
 
   mount LetterOpenerWeb::Engine, at: "/status/mail"
   resources :articles_categories

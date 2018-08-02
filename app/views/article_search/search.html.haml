@@ -1,2 +1,15 @@
-%h1 ArticleSearch#search
-%p Find me in app/views/article_search/search.html.haml
+%h1 検索フォーム
+
+= form_with(model: @article_search_query) do |f|
+  -# - if @article_search_query.errors.any?
+  -#   #error_explanation
+  -#     %h2= "#{pluralize(@article_search_query.errors.count, "error")} prohibited this article from being saved:"
+  -#     %ul
+  -#       - @article_search_query.errors.full_messages.each do |message|
+  -#         %li= message
+
+  .field
+    = f.label :keyword, "キーワード"
+    = f.text_field :keyword
+  .actions
+    = f.submit '検索'
