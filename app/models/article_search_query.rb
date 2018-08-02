@@ -1,0 +1,2 @@
+class ArticleSearchQuery < ApplicationRecord
+end
