@@ -1,0 +1,2 @@
+class ArticleLengthValidator < ApplicationRecord
+end

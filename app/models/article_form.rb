@@ -2,6 +2,8 @@ class ArticleForm
   include ActiveModel::Model
   attr_accessor :title, :body, :category1, :category2, :article
 
+  validates :article_length
+
   delegate :persisted?, to: :article
 
   def save
