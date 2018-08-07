@@ -9,7 +9,9 @@ class ArticlesController < ApplicationController
   end
 
   def new
-    @article_form = ArticleForm.new()
+    @article_form = ArticleForm.new(article: Article.new)
+    # @article_form = ArticleForm.new()
+    # @article_form = ArticleForm.new(article_params(Article.new).merge(category1: Category.find(1), category2: Category.find(2)))
   end
 
   def edit

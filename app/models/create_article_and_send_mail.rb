@@ -3,6 +3,7 @@ class CreateArticleAndSendMail
   define_model_callbacks :save, only: :after
   attr_reader :article
   after_save :send_mail
+  
 
   def initialize(article)
     @article = article

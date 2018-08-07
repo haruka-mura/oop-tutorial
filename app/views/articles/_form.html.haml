@@ -1,10 +1,10 @@
+%h2 エラー
+- if @article_form.errors.any?
+  %ul
+    - @article_form.errors.full_messages.each do |message|
+      %li= message
+
 = form_with(model: @article_form, url: polymorphic_path(@article_form.article)) do |f|
-  - if @article_form.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@article_form.errors.count, "error")} prohibited this article from being saved:"
-      %ul
-        - @article_form.errors.full_messages.each do |message|
-          %li= message
 
   .field
     = f.label :title
@@ -13,7 +13,7 @@
     = f.label :body
     = f.text_area :body
 
-  - if @article_form.article.nil?
+  - unless @article_form.article.persisted?
     .field
       = f.label :category1
       = f.select :category1, Category.all.map { |t| [t.name, t.id]  }

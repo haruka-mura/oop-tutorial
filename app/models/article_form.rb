@@ -1,8 +1,7 @@
 class ArticleForm
   include ActiveModel::Model
   attr_accessor :title, :body, :category1, :category2, :article
-
-  validates :article_length
+  validates :title, article_length: { attribute: :body, minimum: 100 }
 
   delegate :persisted?, to: :article
 
@@ -10,8 +9,12 @@ class ArticleForm
     @article = Article.new(title: title, body: body)
     @article.categories << Category.find_by(id: category1) if category1
     @article.categories << Category.find_by(id: category2) if category2
-    create_article_and_send_mail = CreateArticleAndSendMail.new(article)
-    create_article_and_send_mail.save
+    if valid?
+      create_article_and_send_mail = CreateArticleAndSendMail.new(article)
+      create_article_and_send_mail.save
+    else
+      false
+    end
   end
 
   def update
