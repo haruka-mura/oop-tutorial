@@ -4,7 +4,7 @@
     - @article_form.errors.full_messages.each do |message|
       %li= message
 
-= form_with(model: @article_form, url: polymorphic_path(@article_form.article)) do |f|
+= form_with(model: @article_form, url: polymorphic_path(@article_form.article), local: true) do |f|
 
   .field
     = f.label :title
