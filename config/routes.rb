@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   get 'search', to: 'article_search#search'
 
   mount LetterOpenerWeb::Engine, at: "/status/mail"
