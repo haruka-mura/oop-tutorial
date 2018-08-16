@@ -1,0 +1,2 @@
+class CreateTag < ApplicationRecord
+end
