@@ -6,7 +6,8 @@ class ArticleForm
   delegate :persisted?, to: :article
 
   def save
-    @article = Article.new(title: title, body: body)
+    article_title = CreateTag.new(title: title).save
+    @article = Article.new(title: article_title, body: body)
     @article.categories << Category.find_by(id: category1) if category1
     @article.categories << Category.find_by(id: category2) if category2
     if valid?
