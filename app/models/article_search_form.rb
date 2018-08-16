@@ -5,7 +5,7 @@ class ArticleSearchForm
 
   def articles
     if keyword.nil?
-      Article.limit(2)
+      Article.all
     else
       ArticleSearchQuery.new({keyword: keyword}).articles
     end
