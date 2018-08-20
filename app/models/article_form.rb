@@ -11,6 +11,15 @@ class ArticleForm
     @article = Article.new(title: @tags_and_title.article_title, body: body)
     @article.categories << Category.find_by(id: category1) if category1
     @article.categories << Category.find_by(id: category2) if category2
+
+    @tags_and_title.tags&.each do |tag|
+      if Tag.exists?(name: tag)
+        @article.tags << Tag.find_by(name: tag)
+      else
+        @article.tags.build(name: tag)
+      end
+    end
+
     if valid?
       create_article_and_send_mail = CreateArticleAndSendMail.new(article)
       create_article_and_send_mail.save

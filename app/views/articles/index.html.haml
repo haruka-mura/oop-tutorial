@@ -5,6 +5,8 @@
     %tr
       %th Title
       %th Body
+      %th Categories
+      %th Tags
       %th
       %th
       %th
@@ -14,6 +16,12 @@
       %tr
         %td= article.title
         %td= article.body
+        %td
+          - article.categories.each do |category|
+            = category.name
+        %td
+          - article.tags.each do |tag|
+            = tag.name
         %td= link_to 'Show', article
         %td= link_to 'Edit', edit_article_path(article)
         %td= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
