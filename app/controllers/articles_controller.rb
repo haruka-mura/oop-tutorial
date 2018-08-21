@@ -16,6 +16,7 @@ class ArticlesController < ApplicationController
 
   def edit
     @article_form = ArticleForm.new(article_params(@article))
+    @tags = @article_form.show_tags
   end
 
   def create

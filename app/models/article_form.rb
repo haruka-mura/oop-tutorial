@@ -37,10 +37,24 @@ class ArticleForm
     update_article_and_send_mail.update(params)
   end
 
-  def params
-    {
-      title: title,
-      body: body
-    }
+  def show_tags
+    if self.article.tags.exists?
+      @tags = []
+      self.article.tags.each do |tag|
+        @tags << tag.name
+      end
+      @tags = "[#{@tags.join(" ").gsub(/\[|\]|\"/, "")}] "
+    else
+      @tags = ""
+    end
   end
+
+  private
+
+    def params
+      {
+        title: title,
+        body: body
+      }
+    end
 end

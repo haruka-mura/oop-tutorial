@@ -5,14 +5,13 @@
 
 = form_with(model: @article_form, url: polymorphic_path(@article_form.article), local: true) do |f|
 
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :body
-    = f.text_area :body
-
   - unless @article_form.article.persisted?
+    .field
+      = f.label :title
+      = f.text_field :title
+    .field
+      = f.label :body
+      = f.text_area :body
     .field
       = f.label :category1
       = f.select :category1, Category.all.map { |t| [t.name, t.id]  }
@@ -20,6 +19,12 @@
       = f.label :category2
       = f.select :category2, Category.all.map { |t| [t.name, t.id]  }
   - else
+    .field
+      = f.label :title
+      = f.text_field :title, value: "#{@tags}#{@article_form.title}"
+    .field
+      = f.label :body
+      = f.text_area :body
     .field
       = f.label :category1
       = f.select :category1, Category.all.map { |t| [t.name, t.id]  }, selected: @article_form.category1.id
