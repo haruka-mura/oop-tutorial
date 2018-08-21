@@ -12,7 +12,7 @@ class ArticleForm
     @article.categories << Category.find_by(id: category1) if category1
     @article.categories << Category.find_by(id: category2) if category2
 
-    @tags_and_title.tags&.each do |tag|
+    @tags_and_title.tags.each do |tag|
       if Tag.exists?(name: tag)
         @article.tags << Tag.find_by(name: tag)
       else
