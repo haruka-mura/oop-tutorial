@@ -34,7 +34,7 @@ class TagsController < ApplicationController
 
   def destroy
     @tag.destroy
-    redirect_to categories_url, notice: 'tag was successfully destroyed.'
+    redirect_to tags_url, notice: 'tag was successfully destroyed.'
   end
 
   private

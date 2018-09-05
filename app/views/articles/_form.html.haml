@@ -21,7 +21,7 @@
   - else
     .field
       = f.label :title
-      = f.text_field :title, value: "#{@tags}#{@article_form.title}"
+      = f.text_field :title, value: "#{@article_form.show_tags}#{@article_form.title}"
     .field
       = f.label :body
       = f.text_area :body
