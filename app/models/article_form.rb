@@ -6,9 +6,15 @@ class ArticleForm
   delegate :persisted?, to: :article
 
   def save
-    @article = Article.new(title: title, body: body)
+    tags_and_title = CreateTag.new(title: title)
+    @article = Article.new(title: tags_and_title.article_title, body: body)
     @article.categories << Category.find_by(id: category1) if category1
     @article.categories << Category.find_by(id: category2) if category2
+
+    tags_and_title.tags.each do |tag|
+      @article.tags << Tag.find_or_initialize_by(name: tag)
+    end
+
     if valid?
       create_article_and_send_mail = CreateArticleAndSendMail.new(article)
       create_article_and_send_mail.save
@@ -26,10 +32,24 @@ class ArticleForm
     update_article_and_send_mail.update(params)
   end
 
-  def params
-    {
-      title: title,
-      body: body
-    }
+  def show_tags
+    if self.article.tags.exists?
+      @tags = []
+      self.article.tags.each do |tag|
+        @tags << tag.name
+      end
+      @tags = "[#{@tags.join(" ").gsub(/\[|\]|\"/, "")}] "
+    else
+      @tags = ""
+    end
   end
+
+  private
+
+    def params
+      {
+        title: title,
+        body: body
+      }
+    end
 end
